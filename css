@@ -1,46 +1,32 @@
 /* style.css */
 body {
+  text-align: center;
   margin: 0;
+  font-family: Arial, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #e3f2fd;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 #game-container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
+  border: 2px solid #333;
   background-color: #ffffff;
-  border: 2px solid #000;
-  overflow: hidden;
 }
 
-#player {
+#box {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: #3498db;
-  bottom: 10px;
-  left: 10px;
-}
-
-#obstacle {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: #e74c3c;
-  top: 0;
-  left: 200px;
-  animation: moveDown 2s infinite linear;
-}
-
-@keyframes moveDown {
-  from {
-    top: 0;
-  }
-  to {
-    top: 400px;
-  }
+  width: 50px;
+  height: 50px;
+  background-color: #f44336;
+  cursor: pointer;
 }
