@@ -1,34 +1,31 @@
 // script.js
-const player = document.getElementById("player");
-const obstacle = document.getElementById("obstacle");
-const gameContainer = document.getElementById("game-container");
+const box = document.getElementById("box");
+const container = document.getElementById("game-container");
 
-document.addEventListener("keydown", movePlayer);
+let score = 0;
 
-function movePlayer(event) {
-  const playerRect = player.getBoundingClientRect();
-  const containerRect = gameContainer.getBoundingClientRect();
+// Move the box to a random position
+function moveBox() {
+  const containerRect = container.getBoundingClientRect();
+  const maxX = containerRect.width - box.clientWidth;
+  const maxY = containerRect.height - box.clientHeight;
 
-  if (event.key === "ArrowLeft" && playerRect.left > containerRect.left) {
-    player.style.left = player.offsetLeft - 20 + "px";
-  } else if (event.key === "ArrowRight" && playerRect.right < containerRect.right) {
-    player.style.left = player.offsetLeft + 20 + "px";
-  }
+  const randomX = Math.floor(Math.random() * maxX);
+  const randomY = Math.floor(Math.random() * maxY);
+
+  box.style.left = randomX + "px";
+  box.style.top = randomY + "px";
 }
 
-function checkCollision() {
-  const playerRect = player.getBoundingClientRect();
-  const obstacleRect = obstacle.getBoundingClientRect();
+// Click event for the box
+box.addEventListener("click", () => {
+  score++;
+  alert(`You clicked the box! Score: ${score}`);
+  moveBox();
+});
 
-  if (
-    playerRect.left < obstacleRect.right &&
-    playerRect.right > obstacleRect.left &&
-    playerRect.top < obstacleRect.bottom &&
-    playerRect.bottom > obstacleRect.top
-  ) {
-    alert("Game Over!");
-    location.reload();
-  }
-}
+// Move the box every 1.5 seconds
+setInterval(moveBox, 1500);
 
-setInterval(checkCollision, 50);
+// Start with initial box movement
+moveBox();
